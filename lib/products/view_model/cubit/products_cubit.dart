@@ -1,9 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:task_elevate/products/data/models/products.dart';
 import 'package:task_elevate/products/data/repositories/products_repositories.dart';
 
 part 'products_state.dart';
 
+@singleton
 class ProductsCubit extends Cubit<ProductsState> {
   ProductsCubit(this._productsRepositories) : super(ProductsInitial());
 

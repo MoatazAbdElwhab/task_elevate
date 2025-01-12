@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:task_elevate/products/data/models/products.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({super.key});
+  const ProductItem({
+    super.key,
+    required this.products,
+  });
+  final Products products;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +30,8 @@ class ProductItem extends StatelessWidget {
                   borderRadius: const BorderRadius.vertical(
                     top: Radius.circular(8),
                   ),
-                  child: Image.asset(
-                    'assets/zoz.jpg',
+                  child: Image.network(
+                    products.image,
                     width: double.infinity,
                     height: double.infinity,
                     fit: BoxFit.cover,
@@ -58,27 +63,30 @@ class ProductItem extends StatelessWidget {
               padding: const EdgeInsets.all(6.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    'title',
-                    style: TextStyle(fontWeight: FontWeight.w500),
+                  Text(
+                    products.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontWeight: FontWeight.w500),
                   ),
-                  const Text(
-                    'description',
-                    style: TextStyle(fontWeight: FontWeight.w500),
+                  Text(
+                    products.description,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontWeight: FontWeight.w500),
                   ),
                   const SizedBox(height: 4),
-                  const Row(
+                  Row(
                     children: [
                       Text(
-                        'EGP 1000',
-                        style: TextStyle(fontWeight: FontWeight.w500),
+                        'EGP ${products.price}',
+                        style: const TextStyle(fontWeight: FontWeight.w500),
                       ),
-                      SizedBox(width: 16),
+                      const SizedBox(width: 16),
                       Text(
-                        '1500 EGP',
-                        style: TextStyle(
+                        '${products.price + 266} EGP',
+                        style: const TextStyle(
                           decoration: TextDecoration.lineThrough,
                           color: Colors.blueGrey,
                           fontSize: 12,
@@ -89,9 +97,9 @@ class ProductItem extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        'Review (4.5)',
-                        style: TextStyle(
+                      Text(
+                        'Review (${products.rating.rate})',
+                        style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 12,
                         ),
@@ -119,7 +127,7 @@ class ProductItem extends StatelessWidget {
                         padding: EdgeInsets.zero,
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),

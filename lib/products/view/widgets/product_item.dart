@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_elevate/products/data/models/products.dart';
 
 class ProductItem extends StatelessWidget {
@@ -11,8 +12,8 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 240,
-      width: 192,
+      height: 240.h,
+      width: 192.w,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -23,7 +24,7 @@ class ProductItem extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 120,
+            height: 120.h,
             child: Stack(
               children: [
                 ClipRRect(
@@ -60,7 +61,7 @@ class ProductItem extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(6.0),
+              padding: const EdgeInsets.all(6.0).w,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -76,32 +77,40 @@ class ProductItem extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(fontWeight: FontWeight.w500),
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4.h),
+                  const Spacer(),
                   Row(
                     children: [
                       Text(
                         'EGP ${products.price}',
-                        style: const TextStyle(fontWeight: FontWeight.w500),
-                      ),
-                      const SizedBox(width: 16),
-                      Text(
-                        '${products.price + 266} EGP',
                         style: const TextStyle(
-                          decoration: TextDecoration.lineThrough,
-                          color: Colors.blueGrey,
-                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(width: 12.w),
+                      Expanded(
+                        child: Text(
+                          '${products.price + 266} EGP',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            decoration: TextDecoration.lineThrough,
+                            color: Colors.blueGrey,
+                            fontSize: 12.sp,
+                          ),
                         ),
                       ),
                     ],
                   ),
+                  const Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         'Review (${products.rating.rate})',
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontWeight: FontWeight.w400,
-                          fontSize: 12,
+                          fontSize: 12.sp,
                         ),
                       ),
                       const Icon(

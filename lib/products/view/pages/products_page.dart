@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:task_elevate/products/view/widgets/product_item.dart';
 
 @singleton
 class ProductsPage extends StatelessWidget {
@@ -11,8 +12,13 @@ class ProductsPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Products Page'),
       ),
-      body: const Center(
-        child: Text('Products Page'),
+      body: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 0.82,
+        ),
+        itemBuilder: (context, index) => const ProductItem(),
+        itemCount: 10,
       ),
     );
   }
